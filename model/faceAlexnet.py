@@ -129,8 +129,12 @@ class AgeClassify:
     def __init__(self):
         #step 1:define model
         self.model=AgeAlexNet(pretrainded=False).cuda()
-        #step 2:define optimizer
-        self.optim=torch.optim.Adam(self.model.parameters(),lr=1e-4,betas=(0.5, 0.999))
+        #step 2:define optimizer 
+        #Adam(Adaptive Moment Estimation)本质上是带有动量项的RMSprop，它利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。
+        #它的优点主要在于经过偏置校正后，每一次迭代学习率都有个确定范围，使得参数比较平稳。
+        #lr (float, optional) ：学习率(默认: 1e-3) 
+        #betas (Tuple[float, float], optional)：用于计算梯度的平均和平方的系数(默认: (0.9, 0.999))
+        self.optim=torch.optim.Adam(self.model.parameters(),lr=1e-4,betas=(0.5, 0.999)) 
         #step 3:define loss
         self.criterion=nn.CrossEntropyLoss().cuda() #交叉熵损失函数
 
