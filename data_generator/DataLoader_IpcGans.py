@@ -34,7 +34,7 @@ class CACD(data.Dataset):
         label_pair_root=os.path.join(list_root,"train_label_pair.txt")
         with open(label_pair_root,'r') as f:
             lines=f.readlines()
-        lines=[line.strip() for line in lines]
+        lines=[line.strip() for line in lines] #strip()表示删除掉数据中的换行符
         shuffle(lines)
         self.label_pairs=[]
         for line in lines:
